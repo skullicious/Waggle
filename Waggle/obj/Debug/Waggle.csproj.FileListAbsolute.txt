@@ -1,0 +1,7 @@
+C:\Users\test\source\repos\Waggle\Waggle\bin\Debug\Waggle.exe.config
+C:\Users\test\source\repos\Waggle\Waggle\bin\Debug\Waggle.exe
+C:\Users\test\source\repos\Waggle\Waggle\bin\Debug\Waggle.pdb
+C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.csprojAssemblyReference.cache
+C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.csproj.CoreCompileInputs.cache
+C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.exe
+C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.pdb
