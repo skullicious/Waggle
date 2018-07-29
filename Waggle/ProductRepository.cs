@@ -59,16 +59,11 @@ namespace Waggle.Biz
 
                     while (dataReader.Read())
                     {
-                        // DATAREADER RETURNS ODD FORMATTING! INVESTIGATE AND TIDY!
-
-                                             
+                        // DATAREADER RETURNS ODD FORMATTING! INVESTIGATE AND TIDY!                                       
                                          
-
                         product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
                         product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
-                    
-                       
-                       
+                                                                  
                     }
 
                 }
