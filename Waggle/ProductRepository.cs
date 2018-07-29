@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Waggle.cmn;
 
 
 namespace Waggle.Biz
@@ -54,22 +55,20 @@ namespace Waggle.Biz
                 //Load into product object the returned row from database
                 if (dataReader.HasRows)
                 {
-                    Console.WriteLine("WE GOT ROWS!");
+                    Console.WriteLine("Retrieving Item");
 
                     while (dataReader.Read())
                     {
                         // DATAREADER RETURNS ODD FORMATTING! INVESTIGATE AND TIDY!
 
+                                             
+                                         
 
-                     //   product.ProductId = Convert.ToInt32(datareader["ProductId"]);
-                        product.ProductName = dataReader["ProductName"].ToString().TrimEnd();
-                        product.ProductDescription = dataReader["ProductDescription"].ToString();
-                        
-
-
-                        Console.WriteLine("DATAREADER BE READING!"); 
-                        Console.WriteLine(product.ProductName);
-                        Console.WriteLine(product.ProductDescription);
+                        product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
+                        product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
+                    
+                       
+                       
                     }
 
                 }
@@ -116,8 +115,8 @@ namespace Waggle.Biz
                     product = new Product();
 
                     //Populate product
-                    product.ProductName = dataReader["ProductName"].ToString().TrimEnd();
-                    product.ProductDescription = dataReader["ProductDescription"].ToString();
+                    product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
+                    product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
 
                     //Add object to result list
                     result.Add(product);
@@ -145,17 +144,11 @@ namespace Waggle.Biz
                     //Call SQL stored procedure
                     //Test Code Below
                     InsertNewProduct(product);
-
-
-
                 }
                 else
                 {
                     //Call update stored procedure//also  used as delete.
-
-
-
-
+                    
                 }
             
             }

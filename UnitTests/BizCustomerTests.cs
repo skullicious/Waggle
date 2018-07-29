@@ -126,7 +126,6 @@ namespace UnitTests
         [TestMethod]
         public void ValidateMissingLastName()
         {
-
             //Arrange
             var customer = new Customer();
             customer.EmailAddress = "j.smith@email.com";

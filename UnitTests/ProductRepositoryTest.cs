@@ -90,7 +90,7 @@ namespace UnitTests
 
             //Act
             var result = productRepository;
-            var actual = result.Retrieve(3);
+            var actual = result.Retrieve(2);
 
 
             //Assert
@@ -117,12 +117,12 @@ namespace UnitTests
             
           foreach (var item in actual)
           {
-                Console.WriteLine(item.ProductId);
+              //Console.WriteLine(item.ProductId);
+                Console.WriteLine(item.ProductName);
+                Console.WriteLine(item.ProductDescription);
 
           }
-
-
-
+          
         }
     }
 }

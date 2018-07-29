@@ -8,3 +8,13 @@ C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.Biz.csprojAssemblyRefe
 C:\Users\test\source\repos\Waggle\Waggle\bin\Debug\Waggle.Cmn.dll
 C:\Users\test\source\repos\Waggle\Waggle\bin\Debug\Waggle.Cmn.pdb
 C:\Users\test\source\repos\Waggle\Waggle\obj\Debug\Waggle.Biz.csproj.CopyComplete
+C:\Users\test\source\git\Waggle\Waggle\bin\Debug\Waggle.exe.config
+C:\Users\test\source\git\Waggle\Waggle\bin\Debug\Waggle.exe
+C:\Users\test\source\git\Waggle\Waggle\bin\Debug\Waggle.pdb
+C:\Users\test\source\git\Waggle\Waggle\bin\Debug\Waggle.Cmn.dll
+C:\Users\test\source\git\Waggle\Waggle\bin\Debug\Waggle.Cmn.pdb
+C:\Users\test\source\git\Waggle\Waggle\obj\Debug\Waggle.Biz.csprojAssemblyReference.cache
+C:\Users\test\source\git\Waggle\Waggle\obj\Debug\Waggle.Biz.csproj.CoreCompileInputs.cache
+C:\Users\test\source\git\Waggle\Waggle\obj\Debug\Waggle.Biz.csproj.CopyComplete
+C:\Users\test\source\git\Waggle\Waggle\obj\Debug\Waggle.exe
+C:\Users\test\source\git\Waggle\Waggle\obj\Debug\Waggle.pdb
