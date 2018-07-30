@@ -37,5 +37,21 @@ namespace Waggle.CmnTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void MakeAlphaNumericWithHyphenOnlyTest()
+        {
+            //Arrange
+            var source = "Test-Thing!+";
+            var expected = "Test-Thing";
+
+
+
+            //Act 
+            var actual = source.MakeAlphaNumericWithHyphenOnly();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

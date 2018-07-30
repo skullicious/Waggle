@@ -42,7 +42,7 @@ namespace UnitTests
 
 
         [TestMethod]
-        public void InsertExistingSQL()
+        public void InsertNewProductSQL()
         {
 
             //Arrange
@@ -52,24 +52,49 @@ namespace UnitTests
             var dummyProduct = new Product()
             {
 
-                ProductName = "ultegra di-2 groupset",
-                ProductDescription = "groupset",
+                ProductName = "Test Product mk2",
+                ProductDescription = "Test Description mk2",
               
-
             };
-
-
-
-
+            
             //Act
 
             var actual = productRepository;
             actual.InsertNewProduct(dummyProduct);
-
-
+            
             //Assert
 
           
+
+        }
+
+
+
+        [TestMethod]
+        public void UpdateExistingProductSQL()
+        {
+            var productRepository = new ProductRepository();
+
+            var currentProduct = productRepository.Retrieve(12);
+                        
+            currentProduct.ProductDescription = "Description Test Updater!";
+                    
+            productRepository.UpdateExistingProduct(currentProduct);
+
+        }
+
+
+        [TestMethod]
+        public void UpdateEntityStateForProductSQL()
+        {
+            var productRepository = new ProductRepository();
+
+            var currentProduct = productRepository.Retrieve(12);
+
+            currentProduct.EntityState = EntityStateOption.Deleted;          
+
+            
+            productRepository.UpdateExistingProduct(currentProduct);
 
         }
 

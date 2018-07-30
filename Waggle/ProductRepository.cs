@@ -59,16 +59,22 @@ namespace Waggle.Biz
 
                     while (dataReader.Read())
                     {
-                        // DATAREADER RETURNS ODD FORMATTING! INVESTIGATE AND TIDY!                                       
+                        // DATAREADER RETURNS ODD FORMATTING IN DEBUG??                                     
                                          
                         product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
                         product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
                                                                   
                     }
 
+                    //Tidy up connection TEST
+                    command.Dispose();
+                    connection.Close();
+                    connection.Dispose();
+
+
                 }
 
-                                
+
             }
             //code that retrieves selected product
             return product;
@@ -117,6 +123,11 @@ namespace Waggle.Biz
                     result.Add(product);
                 }
 
+                //Tidy up connection TEST
+                command.Dispose();
+                connection.Close();
+                connection.Dispose();
+
 
             }
 
@@ -142,8 +153,8 @@ namespace Waggle.Biz
                 }
                 else
                 {
-                    //Call update stored procedure//also  used as delete.
-                    
+                    //Change product or set to inactive? also  used as delete.                    
+                    UpdateExistingProduct(product);
                 }
             
             }
@@ -157,16 +168,14 @@ namespace Waggle.Biz
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        // public int InsertNewProduct(Product product)
-
-            //switch this back to int and figure out casting..
+        // public int InsertNewProduct(Product product)        
 
 
         public string InsertNewProduct(Product product)
             
         {
             //create SQL query
-            string sqlQuery = string.Format("Insert into Product (ProductName,ProductDescription) Values('{0}','{1}');" + "Select @@Identity", product.ProductName, product.ProductDescription);
+            string InsertSqlQuery = string.Format("Insert into Product (ProductName,ProductDescription) Values('{0}','{1}');" + "Select @@Identity", product.ProductName, product.ProductDescription);
 
             //Create and open connection to SQL Server           
             SqlConnection connection = new SqlConnection(DatabaseHelper.ConnectionString);   
@@ -174,12 +183,10 @@ namespace Waggle.Biz
             connection.Open();
 
             //Create a command object
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlCommand command = new SqlCommand(InsertSqlQuery, connection);
 
-            //Execute command object and return new  ID
-            // int newProductId = Convert.ToInt32((decimal)command.ExecuteScalar());
-            //   string newProductId = command.ToString();
-            string newProductId = command.ExecuteScalar().ToString();
+            //Execute command object and return new  ID        
+           string newProductId = command.ExecuteScalar().ToString();
 
 
             //Tidy up connection
@@ -193,7 +200,49 @@ namespace Waggle.Biz
             
 
         }
-        
+
+
+        public string UpdateExistingProduct(Product product)
+
+        {
+
+
+            //create SQL query
+            string UpdateSqlQuery = string.Format("Update Product SET ProductName='{0}',ProductDescription='{1}',EntityState='{2}' Where ProductId = {3};", product.ProductName, product.ProductDescription, product.EntityState, product.ProductId);
+
+            //Create and open connection to SQL Server           
+            SqlConnection connection = new SqlConnection(DatabaseHelper.ConnectionString);
+
+            connection.Open();
+
+            //Create a command object
+            SqlCommand command = null;
+
+            command = new SqlCommand(UpdateSqlQuery, connection);
+
+            command.ExecuteScalar();
+
+
+
+            Console.WriteLine(UpdateSqlQuery);
+
+            //  SqlCommand command = new SqlCommand(UpdateSqlQuery, connection);
+
+            string productId = product.ProductId.ToString();
+
+            //Tidy up connection
+            command.Dispose();
+            connection.Close();
+            connection.Dispose();
+
+            //set return value
+
+            return productId;
+        }
+
 
     }
+
+
+    
 }

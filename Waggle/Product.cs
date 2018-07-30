@@ -103,22 +103,9 @@ namespace Waggle.Biz
 
         public int SequenceNumber { get; set; }
 
-
         public string ProductCode => this.Category + "SequenceNumberPlaceHolder!!";
-
-
-
-        /// <summary>
-        /// Vendor class TO BE ADDED!
-        /// </summary>
-        //   private Vendor productVendor;
-        //    public Vendor ProductVendor
-        //     {
-        //         get { return productVendor; }
-        //          set { productVendor = value; }
-        //      }
-
-
+                       
+        
         public override bool Validate()
         {
             var isValid = true;
@@ -131,14 +118,14 @@ namespace Waggle.Biz
 
 
         }
-
-
+        
 
         public override string ToString()
         {
             return ProductName;
             
         }
+
 
         public string Log()
         {
