@@ -41,6 +41,7 @@ namespace UnitTests
         }
 
 
+
         [TestMethod]
         public void InsertNewProductSQL()
         {
@@ -53,8 +54,12 @@ namespace UnitTests
             {
 
                 ProductName = "Test Product mk2",
-                ProductDescription = "Test Description mk2",
-              
+                ProductDescription = "Description of the product",
+                EntityState = EntityStateOption.Test,
+                Category = "GS",
+                SequenceNumber = 0123456789,
+                
+
             };
             
             //Act
@@ -108,14 +113,14 @@ namespace UnitTests
 
             var expected = new Product(1)
             {
-                ProductName = "ultegra di-2 groupset",
-                ProductDescription = "groupset",
+                ProductName = "Test Product mk2",
+                ProductDescription = "Description Test Updater",
             };
 
 
             //Act
             var result = productRepository;
-            var actual = result.Retrieve(2);
+            var actual = result.Retrieve(12);
 
 
             //Assert
@@ -142,7 +147,7 @@ namespace UnitTests
             
           foreach (var item in actual)
           {
-              //Console.WriteLine(item.ProductId);
+                Console.WriteLine(item.ProductCode);
                 Console.WriteLine(item.ProductName);
                 Console.WriteLine(item.ProductDescription);
 

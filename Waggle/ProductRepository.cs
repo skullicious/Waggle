@@ -62,8 +62,17 @@ namespace Waggle.Biz
                         // DATAREADER RETURNS ODD FORMATTING IN DEBUG??                                     
                                          
                         product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
-                        product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
-                                                                  
+                        product.ProductDescription = dataReader["ProductDescription"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
+
+
+                        //Entitystate SQL value is assigned to string
+                        string entityState = (string)dataReader["EntityState"];
+
+                        //Convert string value of entity state to the EntityState enum.
+                        EntityStateOption productForEntityState = (EntityStateOption)Enum.Parse(typeof(EntityStateOption), entityState);
+                        product.EntityState = productForEntityState;
+
+                        Console.WriteLine(product.EntityState);
                     }
 
                     //Tidy up connection TEST
@@ -79,6 +88,11 @@ namespace Waggle.Biz
             //code that retrieves selected product
             return product;
         }
+
+
+
+
+
 
         /// <summary>
         ///  Retrieve List of products...
@@ -117,8 +131,20 @@ namespace Waggle.Biz
 
                     //Populate product
                     product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
-                    product.ProductDescription = dataReader["ProductDescription"].ToString().MakeAlphaNumericWithHyphenOnly();
+                    product.ProductDescription = dataReader["ProductDescription"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
 
+                    //Entitystate SQL value is assigned to string
+                    string entityState = (string)dataReader["EntityState"];
+
+                    //Convert string value of entity state to the EntityState enum.
+                    EntityStateOption productForEntityState = (EntityStateOption)Enum.Parse(typeof(EntityStateOption), entityState);
+                    product.EntityState = productForEntityState;
+
+                    Console.WriteLine(product.EntityState);
+                //  product.EntityState = dataReader["EntityState"].ToString();
+                //  product.ProductCode = dataReader["ProductCode"].ToString().MakeAlphaNumericWithHyphenOnly();
+                    
+                    
                     //Add object to result list
                     result.Add(product);
                 }
@@ -175,7 +201,8 @@ namespace Waggle.Biz
             
         {
             //create SQL query
-            string InsertSqlQuery = string.Format("Insert into Product (ProductName,ProductDescription) Values('{0}','{1}');" + "Select @@Identity", product.ProductName, product.ProductDescription);
+            string InsertSqlQuery = string.Format("Insert into Product (ProductName,ProductDescription,EntityState,Category,SequenceNumber,ProductCode) Values('{0}','{1}','{2}','{3}','{4}','{5}');" + "Select @@Identity"
+                , product.ProductName, product.ProductDescription, product.EntityState, product.Category, product.SequenceNumber, product.ProductCode);
 
             //Create and open connection to SQL Server           
             SqlConnection connection = new SqlConnection(DatabaseHelper.ConnectionString);   

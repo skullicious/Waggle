@@ -11,7 +11,8 @@ namespace Waggle.Biz
     public enum EntityStateOption
     {
     Active,
-    Deleted
+    Deleted,
+    Test
     }
 
     public abstract class EntityBase

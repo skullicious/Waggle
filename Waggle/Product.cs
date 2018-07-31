@@ -99,11 +99,11 @@ namespace Waggle.Biz
 
         public decimal CalculateRRP(decimal MarkupPercent) => this.Cost + (this.Cost * MarkupPercent / 100);
 
-        private string Category { get; set; }
+        public string Category { get; set; }
 
         public int SequenceNumber { get; set; }
 
-        public string ProductCode => this.Category + "SequenceNumberPlaceHolder!!";
+        public string ProductCode => "W-" + this.Category + "-" + this.SequenceNumber;
                        
         
         public override bool Validate()
