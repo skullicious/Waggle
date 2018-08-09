@@ -64,6 +64,8 @@ namespace Waggle.Biz
                         product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
                         product.ProductDescription = dataReader["ProductDescription"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
 
+                        //ReturnProductCode temporary placeholder
+                        product.ReturnedProductCode = dataReader["ProductCode"] == DBNull.Value ? "IS NULL VALUE" : dataReader["ProductCode"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
 
                         //Entitystate SQL value is assigned to string
                         string entityState = (string)dataReader["EntityState"];
@@ -133,18 +135,31 @@ namespace Waggle.Biz
                     product.ProductName = dataReader["ProductName"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
                     product.ProductDescription = dataReader["ProductDescription"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
 
-                    //Entitystate SQL value is assigned to string
-                    string entityState = (string)dataReader["EntityState"];
+                    //ReturnProductCode temporary placeholder
+                    product.ReturnedProductCode = dataReader["ProductCode"] == DBNull.Value ? "IS NULL VALUE" : dataReader["ProductCode"].ToString().TrimEnd().MakeAlphaNumericWithHyphenOnly();
 
-                    //Convert string value of entity state to the EntityState enum.
-                    EntityStateOption productForEntityState = (EntityStateOption)Enum.Parse(typeof(EntityStateOption), entityState);
-                    product.EntityState = productForEntityState;
 
-                    Console.WriteLine(product.EntityState);
-                //  product.EntityState = dataReader["EntityState"].ToString();
-                //  product.ProductCode = dataReader["ProductCode"].ToString().MakeAlphaNumericWithHyphenOnly();
-                    
-                    
+                    //Handle enumurated value and null for Entity State
+
+                    //EntityState SQL value is assigned to string or set to "IS NULL VALUE" if empty.
+                    string entityState = dataReader["EntityState"] == DBNull.Value ? "IS NULL VALUE" :  (string)dataReader["EntityState"];
+
+
+                    if (entityState != "IS NULL VALUE")
+                    {
+
+                        //Convert string value of entity state to the EntityState enum.
+                        EntityStateOption productForEntityState = (EntityStateOption)Enum.Parse(typeof(EntityStateOption), entityState);
+                        product.EntityState = productForEntityState;                        
+
+                        Console.WriteLine(product.EntityState);
+                        //  product.EntityState = dataReader["EntityState"].ToString();
+                        //  product.ProductCode = dataReader["ProductCode"].ToString().MakeAlphaNumericWithHyphenOnly();
+                    }
+
+                   
+
+
                     //Add object to result list
                     result.Add(product);
                 }

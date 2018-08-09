@@ -68,8 +68,7 @@ namespace UnitTests
             actual.InsertNewProduct(dummyProduct);
             
             //Assert
-
-          
+                     
 
         }
 
@@ -123,7 +122,7 @@ namespace UnitTests
             var actual = result.Retrieve(12);
 
 
-            //Assert
+            //Assert                    
             Assert.AreEqual(expected.ProductName, actual.ProductName);
             Assert.AreEqual(expected.ProductDescription, actual.ProductDescription);
 
@@ -147,7 +146,7 @@ namespace UnitTests
             
           foreach (var item in actual)
           {
-                Console.WriteLine(item.ProductCode);
+                Console.WriteLine(item.ReturnedProductCode);
                 Console.WriteLine(item.ProductName);
                 Console.WriteLine(item.ProductDescription);
 

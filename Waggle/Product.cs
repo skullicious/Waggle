@@ -104,7 +104,10 @@ namespace Waggle.Biz
         public int SequenceNumber { get; set; }
 
         public string ProductCode => "W-" + this.Category + "-" + this.SequenceNumber;
-                       
+
+        //Returned Product Code as ProductCode is ReadOnly.
+        public string ReturnedProductCode;
+
         
         public override bool Validate()
         {
